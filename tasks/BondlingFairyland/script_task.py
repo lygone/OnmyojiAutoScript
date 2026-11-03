@@ -449,13 +449,15 @@ class ScriptTask(GameUi, GeneralInvite, GeneralRoom, GeneralBattle, SwitchSoul, 
             if not self.appear(self.I_STONE_SURE):
                 sleep(random.uniform(1.5, 2))  # 等待购买后的动画, 否则已经买了但是下次再点击还会出现该界面
                 return True
+            # 先点「确定」（召唤/购买确认弹窗），再考虑点「+」：
+            # 「+」在弹窗外面，先点它会关闭弹窗，导致确定永远点不到（#2026-11-03）
+            if self.appear_then_click(self.I_STONE_SURE, interval=1):
+                continue
+            if self.appear_then_click(self.I_GI_SURE, interval=1):
+                continue
             for i in range(3):
                 if self.appear_then_click(self.I_BUY_PLUS, interval=1):
                     sleep(0.5)
-            if self.appear_then_click(self.I_GI_SURE, interval=1):
-                continue
-            if self.appear_then_click(self.I_STONE_SURE, interval=1):
-                continue
 
     def run_search(self, bondling_config: BondlingConfig, limit_cnt: int = None):
         """
