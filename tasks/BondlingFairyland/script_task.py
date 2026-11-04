@@ -446,12 +446,14 @@ class ScriptTask(GameUi, GeneralInvite, GeneralRoom, GeneralBattle, SwitchSoul, 
             return False
         while 1:
             self.screenshot()
+            # 先处理「是否消耗N个鸣契石召唤XX」确认弹窗：
+            # 弹窗弹出后会挡住召唤按钮，若先判断召唤按钮，会被误判为"召唤流程已结束"而直接
+            # return，弹窗永远得不到处理，外层就会一直点石头/关闭 → GameTooManyClickError（2026-11-04）
+            if self.appear_then_click(self.I_STONE_SUMMON_SURE, interval=1):
+                continue
             if not self.appear(self.I_STONE_SURE):
                 sleep(random.uniform(1.5, 2))  # 等待购买后的动画, 否则已经买了但是下次再点击还会出现该界面
                 return True
-            # 「是否消耗N个鸣契石召唤XX」确认弹窗优先处理（2026-11-03）
-            if self.appear_then_click(self.I_STONE_SUMMON_SURE, interval=1):
-                continue
             for i in range(3):
                 if self.appear_then_click(self.I_BUY_PLUS, interval=1):
                     sleep(0.5)
