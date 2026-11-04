@@ -165,7 +165,7 @@ class BondlingFairylandAssets:
 	# description 
 	I_STONE_ENTER = RuleImage(profile="High", roi_front=(1172,444,38,41), roi_back=(1172,444,38,41), threshold=0.8, method="Template matching", file="./tasks/BondlingFairyland/stone/stone_stone_enter.png")
 	# description 
-	I_STONE_SURE = RuleImage(profile="High", roi_front=(545,617,168,46), roi_back=(535,605,190,70), threshold=0.8, method="Template matching", file="./tasks/BondlingFairyland/stone/stone_stone_sure.png")
+	I_STONE_SURE = RuleImage(profile="High", roi_front=(644,621,56,39), roi_back=(618,614,120,52), threshold=0.8, method="Template matching", file="./tasks/BondlingFairyland/stone/stone_stone_sure.png")
 # 「是否消耗N个鸣契石召唤XX」弹窗里的确定（2026-11-03 新增）
 	I_STONE_SUMMON_SURE = RuleImage(profile="High", roi_front=(664,414,182,52), roi_back=(650,400,210,80), threshold=0.8, method="Template matching", file="./tasks/BondlingFairyland/stone/stone_summon_sure.png")
 	# description 
